@@ -224,7 +224,7 @@ After the visualizations are generated, open the central dashboard:
 
 ```bash
 # From the project root
-open index.html
+open index.html in your browser
 ```
 
 ---
