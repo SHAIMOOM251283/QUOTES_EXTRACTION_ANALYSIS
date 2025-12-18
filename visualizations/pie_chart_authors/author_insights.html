@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Author Insights | Quotes Dashboard</title>
+
+    <!-- Global dashboard styles -->
+    <link rel="stylesheet" href="../../styles.css">
+
+    <style>
+        /* Page-specific layout */
+        .insights-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 3rem;
+        }
+
+        .insights-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .insights-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .insights-header p {
+            max-width: 760px;
+            margin: 0 auto;
+            color: #4b5563;
+            font-size: 1rem;
+        }
+
+        /* Author selector */
+        .selector-box {
+            max-width: 420px;
+            margin: 2rem auto 1.5rem;
+        }
+
+        .selector-box select {
+            width: 100%;
+            padding: 0.7rem 0.9rem;
+            font-size: 0.95rem;
+            border-radius: 10px;
+            border: 1px solid #d1d5db;
+            background: #fff;
+
+            /* Hide native arrow */
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+
+            /* Add custom arrow */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7' /%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1.25rem center;
+            background-size: 1rem;
+
+            /* Ensure space for arrow */
+            padding-right: 2.75rem;
+        }
+
+        /* Chart container */
+        .chart-wrapper {
+            width: 100%;
+            height: 650px;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: #ffffff;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .chart-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Back navigation */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem; /* space between arrow and text */
+            margin-top: 2rem;
+            padding: 0.5rem 1rem;
+    
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+    
+            color: #2563eb;
+            background-color: #f0f5ff; /* light button background */
+            border: 1px solid #2563eb;
+            border-radius: 8px;
+    
+            transition: all 0.2s ease;
+        }
+
+        .back-link:hover {
+            background-color: #2563eb;
+            color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <h1>Author Insights</h1>
+    <p>Explore sentiment distributions for individual authors.</p>
+</header>
+
+<main class="insights-container">
+
+    <section class="insights-header">
+        <p>Select an author to view their sentiment distribution.</p>
+    </section>
+
+    <!-- Searchable author selector -->
+    <div class="selector-box">
+        <select id="author-select">
+            <option value="Albert_Einstein.html">Albert Einstein</option>
+            <option value="Alexandre_Dumas_fils.html">Alexandre Dumas fils</option>
+            <option value="Alfred_Tennyson.html">Alfred Tennyson</option>
+            <option value="Allen_Saunders.html">Allen Saunders</option>
+            <option value="Andr__Gide.html">Andr Gide</option>
+            <option value="Ayn_Rand.html">Ayn Rand</option>
+            <option value="Bob_Marley.html">Bob Marley</option>
+            <option value="C_S__Lewis.html">C.S. Lewis</option>
+            <option value="Charles_Bukowski.html">Charles Bukowski</option>
+            <option value="Charles_M__Schulz.html">Charles M Schulz</option>
+            <option value="Douglas_Adams.html">Douglas Adams</option>
+            <option value="Dr__Seuss.html">Dr Seuss</option>
+            <option value="E_E__Cummings.html">E.E. Cummings</option>
+            <option value="Eleanor_Roosevelt.html">Eleanor Roosevelt</option>
+            <option value="Elie_Wiesel.html">Elie Wiesel</option>
+            <option value="Ernest_Hemingway.html">Ernest Hemingway</option>
+            <option value="Friedrich_Nietzsche.html">Fredrich Nietzsche</option>
+            <option value="Garrison_Keillor.html">Garrison Keillor</option>
+            <option value="George_Bernard_Shaw.html">George Bernard Shaw</option>
+            <option value="George_Carlin.html">George Carlin</option>
+            <option value="George_Eliot.html">George Eliot</option>
+            <option value="George_R_R__Martin.html">George R. R. Martin</option>
+            <option value="Harper_Lee.html">Harper Lee</option>
+            <option value="Haruki_Murakami.html">Haruki Murakami</option>
+            <option value="Helen_Keller.html">Helen Keller</option>
+            <option value="J_D__Salinger.html">J.D. Salinger</option>
+            <option value="J_K__Rowling.html">J.K. Rowling</option>
+            <option value="J_M__Barrie.html">J.M. Barrie</option>
+            <option value="J_R_R__Tolkien.html">J.R.R. Tolkien</option>
+            <option value="James_Baldwin.html">James Baldwin</option>
+            <option value="Jane_Austen.html">Jane Austen</option>
+            <option value="Jim_Henson.html">Jim Henson</option>
+            <option value="Jimi_Hendrix.html">Jimi Hendrix</option>
+            <option value="John_Lennon.html">John Lennon</option>
+            <option value="Jorge_Luis_Borges.html">Jorge Luis Borges</option>
+            <option value="Khaled_Hosseini.html">Khaled Hosseini</option>
+            <option value="Madeleine_L_Engle.html">Madeleine L Engle</option>
+            <option value="Marilyn_Monroe.html">Marilyn Monroe</option>
+            <option value="Mark_Twain.html">Mark Twain</option>
+            <option value="Martin_Luther_King_Jr.html">Martin Luther King Jr</option>
+            <option value="Mother_Teresa.html">Mother Teresa</option>
+            <option value="Pablo_Neruda.html">Pablo Neruda</option>
+            <option value="Ralph_Waldo_Emerson.html">Ralph Waldo Emerson</option>
+            <option value="Stephenie_Meyer.html">Stephenie Meyer</option>
+            <option value="Steve_Martin.html">Steve Martin</option>
+            <option value="Suzanne_Collins.html">Suzanne Collins</option>
+            <option value="Terry_Pratchett.html">Terry Pratchett</option>
+            <option value="Thomas_A__Edison.html">Thomas A. Edison</option>
+            <option value="W_C__Fields.html">W.C. Fields</option>
+            <option value="William_Nicholson.html">William Nicholson</option>
+        </select>
+    </div>
+
+    <!-- Chart -->
+    <div class="chart-wrapper">
+        <iframe id="chart-frame" src="Albert_Einstein.html" loading="lazy"></iframe>
+    </div>
+
+    <a href="../../index.html" class="back-link">← Back to Dashboard</a>
+
+</main>
+
+<footer class="footer">
+    <p>Interactive pie charts rendered with Plotly • Author-level sentiment analysis</p>
+</footer>
+
+<script>
+    // Minimal JS for dropdown selection
+    const select = document.getElementById('author-select');
+    const iframe = document.getElementById('chart-frame');
+
+    select.addEventListener('change', () => {
+        iframe.src = select.value;
+    });
+</script>
+
+</body>
+</html>

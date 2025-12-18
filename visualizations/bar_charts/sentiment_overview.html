@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sentiment Overview | Quotes Dashboard</title>
+
+    <!-- Link to global dashboard styles -->
+    <link rel="stylesheet" href="../../styles.css">
+
+    <style>
+        /* Page-specific layout (kept minimal & GitHub Pages–friendly) */
+        .overview-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 3rem;
+        }
+
+        .overview-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .overview-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .overview-header p {
+            max-width: 720px;
+            margin: 0 auto;
+            color: #4b5563;
+            font-size: 1rem;
+        }
+
+        /* Toggle buttons */
+        .toggle-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .toggle-btn {
+            padding: 0.6rem 1.4rem;
+            border-radius: 999px;
+            border: 1px solid #d1d5db;
+            background-color: #ffffff;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .toggle-btn:hover {
+            background-color: #f3f4f6;
+        }
+
+        .toggle-btn.active {
+            background-color: #1f2933;
+            color: #ffffff;
+            border-color: #1f2933;
+        }
+
+        /* Chart container */
+        .chart-wrapper {
+            width: 100%;
+            height: 650px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            background-color: #ffffff;
+        }
+
+        .chart-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Back navigation */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem; /* space between arrow and text */
+            margin-top: 2rem;
+            padding: 0.5rem 1rem;
+    
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+    
+            color: #2563eb;
+            background-color: #f0f5ff; /* light button background */
+            border: 1px solid #2563eb;
+            border-radius: 8px;
+    
+            transition: all 0.2s ease;
+        }
+
+        .back-link:hover {
+            background-color: #2563eb;
+            color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>Sentiment Overview</h1>
+        <p>
+            A high-level view of sentiment distribution across the dataset,
+            explored from multiple analytical perspectives.
+        </p>
+    </header>
+
+    <main class="overview-container">
+
+        <section class="overview-header">
+            <p>
+                Switch between sentiment aggregation by <strong>author</strong> and
+                by <strong>thematic tag</strong> to understand how emotional tone
+                varies across different dimensions.
+            </p>
+        </section>
+
+        <div class="toggle-group">
+            <button class="toggle-btn active" data-chart="author">
+                Sentiment by Author
+            </button>
+            <button class="toggle-btn" data-chart="tag">
+                Sentiment by Tag
+            </button>
+        </div>
+
+        <div class="chart-wrapper">
+            <iframe
+                id="chart-frame"
+                src="bar_chart_author.html"
+                loading="lazy"
+            ></iframe>
+        </div>
+
+        <a href="../../index.html" class="back-link">← Back to Dashboard</a>
+
+    </main>
+
+    <footer class="footer">
+        <p>
+            Interactive charts rendered with Plotly •
+            Sentiment analysis performed programmatically
+        </p>
+    </footer>
+
+    <script>
+        // Minimal JS for chart switching
+        const buttons = document.querySelectorAll('.toggle-btn');
+        const iframe = document.getElementById('chart-frame');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active state
+                buttons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Switch chart source
+                const chartType = button.dataset.chart;
+                iframe.src = chartType === 'author'
+                    ? 'bar_chart_author.html'
+                    : 'bar_chart_tags.html';
+            });
+        });
+    </script>
+
+</body>
+</html>

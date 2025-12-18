@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tag Analysis | Quotes Dashboard</title>
+
+    <!-- Global dashboard styles -->
+    <link rel="stylesheet" href="../../styles.css">
+
+    <style>
+        /* Page-specific layout */
+        .insights-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 3rem;
+        }
+
+        .insights-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .insights-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .insights-header p {
+            max-width: 760px;
+            margin: 0 auto;
+            color: #4b5563;
+            font-size: 1rem;
+        }
+
+        /* Tag selector */
+        .selector-box {
+            max-width: 420px;
+            margin: 2rem auto 1.5rem;
+        }
+
+        .selector-box select {
+            width: 100%;
+            padding: 0.7rem 0.9rem;
+            font-size: 0.95rem;
+            border-radius: 10px;
+            border: 1px solid #d1d5db;
+            background: #fff;
+
+            /* Hide native arrow */
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+
+            /* Add custom arrow */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7' /%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1.25rem center;
+            background-size: 1rem;
+
+            /* Ensure space for arrow */
+            padding-right: 2.75rem;
+        }
+
+        /* Chart container */
+        .chart-wrapper {
+            width: 100%;
+            height: 650px;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: #ffffff;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .chart-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Back navigation */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            color: #2563eb;
+            background-color: #f0f5ff;
+            border: 1px solid #2563eb;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .back-link:hover {
+            background-color: #2563eb;
+            color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <h1>Tag-Based Analysis</h1>
+    <p>Explore sentiment distributions for different tags.</p>
+</header>
+
+<main class="insights-container">
+
+    <section class="insights-header">
+        <p>Select a tag to view its sentiment distribution.</p>
+    </section>
+
+    <!-- Tag selector -->
+    <div class="selector-box">
+        <select id="tag-select">
+            <option value="abilities.html">abilities</option>
+            <option value="activism.html">activism</option>
+            <option value="adulthood.html">adulthood</option>
+            <option value="adventure.html">adventure</option>
+            <option value="age.html">age</option>
+            <option value="alcohol.html">alcohol</option>
+            <option value="aliteracy.html">aliteracy</option>
+            <option value="apathy.html">apathy</option>
+            <option value="attributed-no-source.html">attributed-no-source</option>
+            <option value="attributed.html">attributed</option>
+            <option value="authors.html">authors</option>
+            <option value="be-yourself.html">be-yourself</option>
+            <option value="beatles.html">beatles</option>
+            <option value="better-life-empathy.html">better-life-empathy</option>
+            <option value="bilbo.html">bilbo</option>
+            <option value="books.html">books</option>
+            <option value="change.html">change</option>
+            <option value="children.html">children</option>
+            <option value="chocolate.html">chocolate</option>
+            <option value="choices.html">choices</option>
+            <option value="christianity.html">christianity</option>
+            <option value="classic.html">classic</option>
+            <option value="comedy.html">comedy</option>
+            <option value="connection.html">connection</option>
+            <option value="contentment.html">contentment</option>
+            <option value="courage.html">courage</option>
+            <option value="death.html">death</option>
+            <option value="deep-thoughts.html">deep-thoughts</option>
+            <option value="difficult.html">difficult</option>
+            <option value="dreamers.html">dreamers</option>
+            <option value="dreaming.html">dreaming</option>
+            <option value="dreams.html">dreams</option>
+            <option value="drug.html">drug</option>
+            <option value="dumbledore.html">dumbledore</option>
+            <option value="edison.html">edison</option>
+            <option value="education.html">education</option>
+            <option value="elizabeth-bennet.html">elizabeth-bennet</option>
+            <option value="failure.html">failure</option>
+            <option value="fairy-tales.html">fairy-tales</option>
+            <option value="fairytales.html">fairytales</option>
+            <option value="faith.html">faith</option>
+            <option value="fantasy.html">fantasy</option>
+            <option value="fate.html">fate</option>
+            <option value="fear.html">fear</option>
+            <option value="food.html">food</option>
+            <option value="friends.html">friends</option>
+            <option value="friendship.html">friendship</option>
+            <option value="girls.html">girls</option>
+            <option value="god.html">god</option>
+            <option value="good.html">good</option>
+            <option value="growing-up.html">growing-up</option>
+            <option value="grown-ups.html">grown-ups</option>
+            <option value="happiness.html">happiness</option>
+            <option value="hate.html">hate</option>
+            <option value="heartbreak.html">heartbreak</option>
+            <option value="hope.html">hope</option>
+            <option value="humor.html">humor</option>
+            <option value="imagination.html">imagination</option>
+            <option value="indifference.html">indifference</option>
+            <option value="insanity.html">insanity</option>
+            <option value="inspiration.html">inspiration</option>
+            <option value="inspirational.html">inspirational</option>
+            <option value="integrity.html">integrity</option>
+            <option value="jane-austen.html">jane-austen</option>
+            <option value="journey.html">journey</option>
+            <option value="knowledge.html">knowledge</option>
+            <option value="lack-of-friendship.html">lack-of-friendship</option>
+            <option value="lack-of-love.html">lack-of-love</option>
+            <option value="learning.html">learning</option>
+            <option value="library.html">library</option>
+            <option value="lies.html">lies</option>
+            <option value="life.html">life</option>
+            <option value="literature.html">literature</option>
+            <option value="live-death-love.html">live-death-love</option>
+            <option value="live.html">live</option>
+            <option value="lost.html">lost</option>
+            <option value="love.html">love</option>
+            <option value="lying.html">lying</option>
+            <option value="marriage.html">marriage</option>
+            <option value="mind.html">mind</option>
+            <option value="miracle.html">miracle</option>
+            <option value="miracles.html">miracles</option>
+            <option value="misattributed-eleanor-roosevelt.html">misattributed-eleanor-roosevelt</option>
+            <option value="misattributed-john-lennon.html">misattributed-john-lennon</option>
+            <option value="misattributed-mark-twain.html">misattributed-mark-twain</option>
+            <option value="misattributed-to-c-s-lewis.html">misattributed-to-c-s-lewis</option>
+            <option value="misattributed-to-einstein.html">misattributed-to-einstein</option>
+            <option value="misattributed-to-mother-teresa.html">misattributed-to-mother-teresa</option>
+            <option value="mistakes.html">mistakes</option>
+            <option value="music.html">music</option>
+            <option value="navigation.html">navigation</option>
+            <option value="novelist-quotes.html">novelist-quotes</option>
+            <option value="obvious.html">obvious</option>
+            <option value="open-mind.html">open-mind</option>
+            <option value="opposite.html">opposite</option>
+            <option value="paraphrased.html">paraphrased</option>
+            <option value="peace.html">peace</option>
+            <option value="philosophy.html">philosophy</option>
+            <option value="planning.html">planning</option>
+            <option value="plans.html">plans</option>
+            <option value="poetry.html">poetry</option>
+            <option value="quest.html">quest</option>
+            <option value="read.html">read</option>
+            <option value="readers.html">readers</option>
+            <option value="reading-books.html">reading-books</option>
+            <option value="reading.html">reading</option>
+            <option value="regrets.html">regrets</option>
+            <option value="religion.html">religion</option>
+            <option value="romance.html">romance</option>
+            <option value="romantic.html">romantic</option>
+            <option value="self-indulgence.html">self-indulgence</option>
+            <option value="seuss.html">seuss</option>
+            <option value="simile.html">simile</option>
+            <option value="simplicity.html">simplicity</option>
+            <option value="sinister.html">sinister</option>
+            <option value="sisters.html">sisters</option>
+            <option value="success.html">success</option>
+            <option value="sun.html">sun</option>
+            <option value="tea.html">tea</option>
+            <option value="the-hunger-games.html">the-hunger-games</option>
+            <option value="thinking.html">thinking</option>
+            <option value="thought.html">thought</option>
+            <option value="travel.html">travel</option>
+            <option value="troubles.html">troubles</option>
+            <option value="truth.html">truth</option>
+            <option value="understand.html">understand</option>
+            <option value="understanding.html">understanding</option>
+            <option value="unhappy-marriage.html">unhappy-marriage</option>
+            <option value="value.html">value</option>
+            <option value="wander.html">wander</option>
+            <option value="wisdom.html">wisdom</option>
+            <option value="women.html">women</option>
+            <option value="world.html">world</option>
+            <option value="write.html">write</option>
+            <option value="writers.html">writers</option>
+            <option value="writing.html">writing</option>
+            <option value="yourself.html">yourself</option>
+        </select>
+    </div>
+
+    <!-- Chart -->
+    <div class="chart-wrapper">
+        <iframe id="chart-frame" src="abilities.html" loading="lazy"></iframe>
+    </div>
+
+    <a href="../../index.html" class="back-link">← Back to Dashboard</a>
+
+</main>
+
+<footer class="footer">
+    <p>Interactive pie charts rendered with Plotly • Tag-level sentiment analysis</p>
+</footer>
+
+<script>
+    // Minimal JS for dropdown selection
+    const tagSelect = document.getElementById('tag-select');
+    const iframe = document.getElementById('chart-frame');
+
+    tagSelect.addEventListener('change', () => {
+        iframe.src = tagSelect.value;
+    });
+</script>
+
+</body>
+</html>

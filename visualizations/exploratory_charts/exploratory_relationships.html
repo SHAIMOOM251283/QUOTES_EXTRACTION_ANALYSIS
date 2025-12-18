@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exploratory Relationships | Quotes Dashboard</title>
+
+    <!-- Global dashboard styles -->
+    <link rel="stylesheet" href="../../styles.css">
+
+    <style>
+        .insights-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 3rem;
+        }
+
+        .insights-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .insights-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .insights-header p {
+            max-width: 760px;
+            margin: 0 auto;
+            color: #4b5563;
+            font-size: 1rem;
+        }
+
+        /* Button tabs */
+        .button-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .button-tabs button {
+            padding: 0.6rem 1.2rem;
+            font-size: 0.95rem;
+            border-radius: 8px;
+            border: 1px solid #2563eb;
+            background-color: #f0f5ff;
+            color: #2563eb;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .button-tabs button.active {
+            background-color: #2563eb;
+            color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Chart container */
+        .chart-wrapper {
+            width: 100%;
+            height: 650px;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: #ffffff;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            margin-bottom: 2rem;
+        }
+
+        .chart-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Back navigation */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            color: #2563eb;
+            background-color: #f0f5ff;
+            border: 1px solid #2563eb;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .back-link:hover {
+            background-color: #2563eb;
+            color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <h1>Exploratory Relationships</h1>
+    <p>Explore structural, hierarchical and relational insights among quotes and tags.</p>
+</header>
+
+<main class="insights-container">
+
+    <section class="insights-header">
+        <p>Click a chart button to view the corresponding visualization.</p>
+    </section>
+
+    <!-- Chart tabs -->
+    <div class="button-tabs">
+        <button class="tab-btn active" data-src="sankey_diagram.html">Sankey Diagram</button>
+        <button class="tab-btn" data-src="scatter_plot.html">Scatter Plot</button>
+        <button class="tab-btn" data-src="sunburst_chart.html">Sunburst Chart</button>
+        <button class="tab-btn" data-src="treemap.html">Treemap</button>
+    </div>
+
+    <!-- Chart -->
+    <div class="chart-wrapper">
+        <iframe id="chart-frame" src="sankey_diagram.html" loading="lazy"></iframe>
+    </div>
+
+    <a href="../../index.html" class="back-link">← Back to Dashboard</a>
+
+</main>
+
+<footer class="footer">
+    <p>Interactive charts rendered with Plotly • Structural & relational insights</p>
+</footer>
+
+<script>
+    const buttons = document.querySelectorAll('.tab-btn');
+    const iframe = document.getElementById('chart-frame');
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            iframe.src = btn.dataset.src;
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+    });
+</script>
+
+</body>
+</html>
