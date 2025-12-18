@@ -146,7 +146,7 @@ To explore the project:
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/yourusername/QUOTES_EXTRACTION_ANALYSIS.git
+git clone https://github.com/SHAIMOOM251283/QUOTES_EXTRACTION_ANALYSIS.git
 cd QUOTES_EXTRACTION_ANALYSIS
 ```
 
@@ -161,7 +161,7 @@ Open the dashboard locally after cloning the repository:
 🌐 **Live Dashboard (GitHub Pages)**
 
 You can also view the live deployed dashboard here:
-👉 [https://your-username.github.io/your-repo-name/](https://your-username.github.io/your-repo-name/)
+👉 [https://shaimoom251283.github.io/QUOTES_EXTRACTION_ANALYSIS/](https://shaimoom251283.github.io/QUOTES_EXTRACTION_ANALYSIS/)
 
 ---
 
